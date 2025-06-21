@@ -68,9 +68,6 @@ async function main() {
 }
 main().catch(err => console.log("MongoDB connection error:", err));
 
-app.get("/", (req, res) => {
-    res.send("hii, its working");
-});
 
 
 app.use((req, res, next) => {
@@ -86,6 +83,9 @@ app.use((req, res, next) => {
     res.locals.errorNAuthenticated=req.flash("errorNAuthenticated");
     next();
 
+});
+app.get("/", (req, res) => {
+    res.redirect("/listings");
 });
 app.use("/listings", listings)
 app.use("/listings/:id/reviews", reviews);
